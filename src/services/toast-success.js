@@ -2,7 +2,7 @@
 
 import toast from "react-hot-toast";
 
-const setToast = (event, position = "top-right") => {
+const toastSuccess = (event, position = "top-right") => {
   // if (event.judul === "Berhasil") {
   toast.success(event.pesan, {
     duration: 4000,
@@ -31,4 +31,4 @@ const setToast = (event, position = "top-right") => {
   // }
 };
 
-export default setToast;
+export default toastSuccess;
