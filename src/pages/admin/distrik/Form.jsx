@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import SelectSearch from "../../../components/select/SelectSearch";
+import useDistrik from "../../../store/crud/distrik";
 import useKabupaten from "../../../store/crud/kabupaten";
-import useProvinsi from "../../../store/crud/provinsi";
 
 const Form = ({
   showModal,
@@ -15,42 +15,43 @@ const Form = ({
 }) => {
   // state
   const [nama, setNama] = useState("");
-  const [pilihProv, setPilihProv] = useState("");
+  const [pilihKab, setPilihKab] = useState("");
   // store
-  const { updateData, addData } = useKabupaten();
-  const { setProvinsi, dtProvinsi } = useProvinsi();
+  const { updateData, addData } = useDistrik();
+  const { setKabupaten, dtKabupaten } = useKabupaten();
   // effect
   useEffect(() => {
-    // call data provinsi
-    setProvinsi();
+    // call data kabupaten
+    setKabupaten();
     if (cekEdit) {
       return (
-        dataEdit.provinsi &&
-          setPilihProv({
-            value: dataEdit.provinsi.id,
-            label: dataEdit.provinsi.nama,
+        dataEdit.kabupaten &&
+          setPilihKab({
+            value: dataEdit.kabupaten.id,
+            label: dataEdit.kabupaten.nama,
           }),
         dataEdit.nama && setNama(dataEdit.nama)
       );
     }
     setNama("");
-    setPilihProv("");
+    setPilihKab("");
   }, [cekEdit, dataEdit]);
 
-  // pilihan provinsi
-  const options = dtProvinsi.map(function (provinsi) {
+  const onSearchSelect = (value) => {
+    setKabupaten(value);
+  };
+
+  // pilihan kabupaten
+  const options = dtKabupaten.map(function (kabupaten) {
     return {
-      value: provinsi.id,
-      label: `${provinsi.nama}`,
+      value: kabupaten.id,
+      label: `${kabupaten.nama}`,
     };
   });
-  const onSearchSelect = (value) => {
-    setProvinsi(value);
-  };
   // ketika tombol simpan ditekan
   const handleSimpan = async (e) => {
     const items = {
-      provinsi_id: pilihProv.value,
+      kabupaten_id: pilihKab.value,
       nama,
     };
     e.preventDefault();
@@ -94,25 +95,25 @@ const Form = ({
                 {/*body*/}
                 <div className="relative px-6 py-3 flex-auto max-h-96">
                   <form onSubmit={handleSimpan}>
-                    <div className="mb-3 pt-0">
-                      <label htmlFor="provinsi_id">Provinsi</label>
+                    <div className="mb-3 pt-0 flex flex-col gap-2">
+                      <label htmlFor="kabupaten_id">Kabupaten / Kota</label>
                       <SelectSearch
-                        value={pilihProv}
-                        onChange={setPilihProv}
+                        value={pilihKab}
+                        onChange={setPilihKab}
                         options={options}
-                        id="provinsi_id"
+                        id="kabupaten_id"
                         onInputChange={onSearchSelect}
                         required
                       />
                     </div>
-                    <div className="mb-3 pt-0">
-                      <label htmlFor="nama">Nama Kabupaten</label>
+                    <div className="mb-3 pt-0 flex flex-col gap-2">
+                      <label htmlFor="nama">Nama Distrik</label>
                       <input
                         value={nama}
                         onChange={(e) => setNama(e.target.value)}
                         id="nama"
                         type="text"
-                        className="px-3 py-2 mt-2 text-slate-600 relative bg-white rounded text-sm border shadow outline-none focus:outline-none focus:ring w-full"
+                        className="px-3 py-2 text-slate-600 relative bg-white rounded text-sm border shadow outline-none focus:outline-none focus:ring w-full"
                         required
                       />
                     </div>

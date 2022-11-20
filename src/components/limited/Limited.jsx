@@ -5,7 +5,7 @@ import React from "react";
 const Limited = ({ setLimit }) => {
   return (
     <>
-      <div className="shrink w-1/6">
+      <div>
         <select
           onChange={(e) => setLimit(e.target.value)}
           defaultValue={10}

@@ -26,7 +26,7 @@ const Kabupaten = () => {
     setKabupaten(search, page, limit);
   }, [setKabupaten, search, page, limit]);
   // table
-  const headers = ["No", "Provinsi", "Nama", "Aksi"];
+  const headers = ["No", "Provinsi", "Kabupaten", "Aksi"];
   const tableBodies = [`provinsi.nama`, `nama`];
 
   const handleEdit = (item) => {
@@ -70,7 +70,7 @@ const Kabupaten = () => {
       />
       {/* header */}
       <div className="flex justify-between mb-2">
-        <p>Silahkan menambah, merubah dan menghapus data provinsi</p>
+        <p>Silahkan menambah, merubah dan menghapus data kabupaten</p>
         <button
           className="bg-merah text-white active:bg-merah font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           type="button"
@@ -85,9 +85,13 @@ const Kabupaten = () => {
       {/* set tampilan */}
       <div className="mb-3 flex flex-wrap items-start gap-3 justify-between">
         {/* search */}
-        <Search setSearch={setSearch} />
+        <div className="shrink w-4/5">
+          <Search setSearch={setSearch} />
+        </div>
         {/* limit */}
-        <Limited setLimit={setLimit} />
+        <div className="shrink w-1/6">
+          <Limited setLimit={setLimit} />
+        </div>
       </div>
       {/* content */}
       <div className="flex flex-wrap justify-between gap-5">

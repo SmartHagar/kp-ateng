@@ -5,7 +5,7 @@ import React from "react";
 const Search = ({ setSearch }) => {
   return (
     <>
-      <div className="shrink w-4/5">
+      <div>
         <input
           onChange={(e) => setSearch(e.target.value)}
           type="text"

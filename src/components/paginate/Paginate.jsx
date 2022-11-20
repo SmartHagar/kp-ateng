@@ -17,7 +17,7 @@ const Paginate = ({ pageData, setPage, total }) => {
           activePage={current_page}
           itemsCountPerPage={parseInt(per_page)}
           totalItemsCount={total}
-          pageRangeDisplayed={5}
+          pageRangeDisplayed={10}
           itemClass=""
           activeClass=""
           prevPageText="Sebelumnya"

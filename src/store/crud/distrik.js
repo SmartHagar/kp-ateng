@@ -6,7 +6,6 @@ import useUrl from "../../services/base_url";
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 const { crud } = useUrl();
-
 // const getToken = JSON.parse(localStorage.getItem("token"));
 
 const useDistrik = create(
@@ -38,14 +37,13 @@ const useDistrik = create(
         };
       }
     },
-    addData: async (nama) => {
-      // const getToken = JSON.parse(localStorage.getItem("token"));
+    addData: async (items) => {
       try {
         const res = await crud({
           method: "post",
           url: `/distrik`,
           // headers: { Authorization: `Bearer ${getToken}` },
-          data: { nama },
+          data: items,
         });
         set((state) => ({
           dtDistrik: [res.data.data, ...state.dtDistrik],
@@ -81,21 +79,20 @@ const useDistrik = create(
         };
       }
     },
-    updateData: async (id, nama) => {
-      // const getToken = JSON.parse(localStorage.getItem("token"));
+    updateData: async (id, row) => {
       try {
         const response = await crud({
           method: "put",
           url: `/distrik/${id}`,
           // headers: { Authorization: `Bearer ${getToken}` },
-          data: { nama },
+          data: row,
         });
         set((state) => ({
           dtDistrik: state.dtDistrik.map((item) => {
             if (item.id === id) {
               return {
                 ...item,
-                nama,
+                ...response.data.data,
               };
             } else {
               return item;
