@@ -11,6 +11,7 @@ const Table = ({
   limit,
   setEdit,
   setDelete,
+  setLihat,
 }) => {
   const showNo = (index) => {
     let noUrut = (page - 1) * limit + index;
@@ -50,11 +51,21 @@ const Table = ({
                   })}
                   {/* aksi */}
                   <td>
-                    <div className="mt-2">
+                    <div className="mt-2 flex gap-2">
+                      {setLihat && (
+                        <button
+                          onClick={() => setLihat(row)}
+                          type="button"
+                          className="py-2 px-3 text-xs text-center text-biru hover:text-black border border-biru hover:bg-biru focus:ring-1 rounded-lg"
+                        >
+                          Detail
+                        </button>
+                      )}
+
                       <button
                         onClick={() => setEdit(row)}
                         type="button"
-                        className="py-2 px-3 text-xs text-center text-hijau hover:text-black border border-hijau hover:bg-hijau focus:ring-2 rounded-lg mr-2 mb-2"
+                        className="py-2 px-3 text-xs text-center text-hijau hover:text-black border border-hijau hover:bg-hijau focus:ring-1 rounded-lg"
                       >
                         Ubah
                       </button>
@@ -62,7 +73,7 @@ const Table = ({
                       <button
                         onClick={() => setDelete(row.id)}
                         type="button"
-                        className="py-2 px-3 text-xs text-center text-ungu hover:text-white border border-ungu hover:bg-ungu focus:ring-2 rounded-lg mr-2 mb-2"
+                        className="py-2 px-3 text-xs text-center text-ungu hover:text-white border border-ungu hover:bg-ungu focus:ring-1 rounded-lg"
                       >
                         Hapus
                       </button>

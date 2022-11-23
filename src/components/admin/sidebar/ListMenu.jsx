@@ -31,7 +31,7 @@ export const ListMenu = () => {
     >
       <NavLink
         to="/admin/dashboard"
-        className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-hijau hover:text-black"
+        className="flex items-center rounded-lg px-4 py-2 text-black hover:bg-hijau hover:text-black"
       >
         <BiHome size={20} />
 
@@ -39,7 +39,7 @@ export const ListMenu = () => {
       </NavLink>
 
       <details className="group" open={pathName === "wilayah" && true}>
-        <summary className="flex cursor-pointer items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-hijau hover:text-black">
+        <summary className="flex cursor-pointer items-center rounded-lg px-4 py-2 text-black hover:bg-hijau hover:text-black">
           <BiSpa size={20} />
           <span className="ml-3 text-sm"> Wilayah </span>
 
@@ -62,7 +62,7 @@ export const ListMenu = () => {
         <nav aria-label="Wilayah Nav" className="mt-1.5 ml-8 flex flex-col">
           <NavLink
             to="/admin/wilayah/provinsi"
-            className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-hijau hover:text-black"
+            className="flex items-center rounded-lg px-4 py-2 text-black hover:bg-hijau hover:text-black"
           >
             <BiStation size={20} />
 
@@ -71,7 +71,7 @@ export const ListMenu = () => {
 
           <NavLink
             to="/admin/wilayah/kabupaten"
-            className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-hijau hover:text-black"
+            className="flex items-center rounded-lg px-4 py-2 text-black hover:bg-hijau hover:text-black"
           >
             <BiStats size={20} />
 
@@ -80,7 +80,7 @@ export const ListMenu = () => {
 
           <NavLink
             to="/admin/wilayah/distrik"
-            className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-hijau hover:text-black"
+            className="flex items-center rounded-lg px-4 py-2 text-black hover:bg-hijau hover:text-black"
           >
             <BiStar size={20} />
 
@@ -89,14 +89,14 @@ export const ListMenu = () => {
         </nav>
       </details>
 
-      <a
-        href="#"
-        className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-hijau hover:text-black"
+      <NavLink
+        to="/admin/alumni"
+        className="flex items-center rounded-lg px-4 py-2 text-black hover:bg-hijau hover:text-black"
       >
         <BiUserCheck size={20} />
 
         <span className="ml-3 text-sm"> Alumni </span>
-      </a>
+      </NavLink>
     </nav>
   );
 };

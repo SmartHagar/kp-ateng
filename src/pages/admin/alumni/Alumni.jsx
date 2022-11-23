@@ -7,13 +7,15 @@ import Limited from "../../../components/limited/Limited";
 import Paginate from "../../../components/paginate/Paginate";
 import Search from "../../../components/search/Search";
 import Table from "../../../components/table/Table";
+import toastError from "../../../services/toast-error";
 import toastSuccess from "../../../services/toast-success";
-import useDistrik from "../../../store/crud/distrik";
+import useAlumni from "../../../store/crud/alumni";
+import Details from "./Details";
 import Form from "./Form";
 
-const Distrik = () => {
+const Alumni = () => {
   // store
-  const { setDistrik, dtDistrik, responses, removeData } = useDistrik();
+  const { setAlumni, dtAlumni, responses, removeData } = useAlumni();
   // state
   const [showModal, setShowModal] = useState(false);
   const [limit, setLimit] = useState(10);
@@ -23,11 +25,27 @@ const Distrik = () => {
   const [cekEdit, setCekEdit] = useState(true);
   // useEffect
   useEffect(() => {
-    setDistrik({ search }, page, limit);
-  }, [setDistrik, search, page, limit]);
+    setAlumni(search, page, limit);
+  }, [setAlumni, search, page, limit]);
   // table
-  const headers = ["No", "Kabupaten", "Distrik", "Aksi"];
-  const tableBodies = [`kabupaten.nama`, `nama`];
+  const headers = [
+    "No",
+    "Nama",
+    "Jenkel",
+    "Thn. Masuk",
+    "Thn. Lulus",
+    "Prodi",
+    "Status Kerja",
+    "Aksi",
+  ];
+  const tableBodies = [
+    `nama`,
+    "jenkel",
+    "thn_masuk",
+    "thn_lulus",
+    "prodi.nama",
+    "status_kerja",
+  ];
 
   const handleEdit = (item) => {
     setCekEdit(true);
@@ -55,22 +73,39 @@ const Distrik = () => {
     });
   };
 
+  // lihat detail
+  const setLihat = (row) => {
+    console.log("lihat", row);
+  };
+
+  // show toast
+  const showToast = (e) => {
+    if (e.type === "error") {
+      console.log("lihat", e);
+      toastError(e.pesan);
+    } else {
+      toastSuccess(e);
+    }
+  };
+
   return (
-    <div>
+    <>
+      {/* detail */}
+      {/* <Details /> */}
       {/* toaster */}
       <Toaster />
       {/* form */}
       <Form
         showModal={showModal}
         setShowModal={setShowModal}
-        judul="Provinsi"
+        judul="Alumni"
         dataEdit={dataEdit}
         cekEdit={cekEdit}
-        setPesan={toastSuccess}
+        setPesan={showToast}
       />
       {/* header */}
       <div className="flex justify-between mb-2">
-        <p>Silahkan menambah, merubah dan menghapus data distrik</p>
+        <p>Silahkan menambah, merubah dan menghapus data Alumni</p>
         <button
           className="bg-merah text-white active:bg-merah font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           type="button"
@@ -99,12 +134,13 @@ const Distrik = () => {
         <div className="w-full">
           <Table
             headers={headers}
-            dataTable={dtDistrik}
+            dataTable={dtAlumni}
             tableBodies={tableBodies}
             setEdit={handleEdit}
             setDelete={handleDelete}
             page={page}
             limit={limit}
+            setLihat={setLihat}
           />
         </div>
         {/* paginate */}
@@ -112,8 +148,8 @@ const Distrik = () => {
           <Paginate pageData={responses} setPage={setPage} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default Distrik;
+export default Alumni;

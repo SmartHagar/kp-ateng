@@ -18,5 +18,6 @@ export default function useUrl() {
   const api = axios.create({
     baseURL: url_api,
   });
+
   return { auth, crud, api, BASE_URL };
 }

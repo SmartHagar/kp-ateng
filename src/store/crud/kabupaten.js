@@ -13,7 +13,11 @@ const useKabupaten = create(
   devtools((set, get) => ({
     dtKabupaten: [],
     responses: [],
-    setKabupaten: async (search = "", page = "", limit = "") => {
+    setKabupaten: async (
+      cari = { search: "", provinsi_id: "" },
+      page = "",
+      limit = ""
+    ) => {
       try {
         const response = await crud({
           method: "get",
@@ -21,7 +25,8 @@ const useKabupaten = create(
           // headers: { Authorization: `Bearer ${getToken}` },
           params: {
             limit,
-            search,
+            search: cari.search,
+            provinsi_id: cari.provinsi_id,
             page,
           },
         });

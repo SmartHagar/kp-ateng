@@ -9,6 +9,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import Alumni from "../pages/admin/alumni/Alumni";
 // pages admin
 import DashboardAdmin from "../pages/admin/dashboard/Dashboard";
 import Distrik from "../pages/admin/distrik/Distrik";
@@ -42,6 +43,7 @@ const MyRoutes = () => {
             <Route path="kabupaten" element={<Kabupaten />} />
             <Route path="distrik" element={<Distrik />} />
           </Route>
+          <Route path="alumni" element={<Alumni />} />
         </Route>
 
         {/* not found */}

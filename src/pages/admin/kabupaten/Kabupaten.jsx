@@ -23,10 +23,10 @@ const Kabupaten = () => {
   const [cekEdit, setCekEdit] = useState(true);
   // useEffect
   useEffect(() => {
-    setKabupaten(search, page, limit);
+    setKabupaten({ search }, page, limit);
   }, [setKabupaten, search, page, limit]);
   // table
-  const headers = ["No", "Provinsi", "Kabupaten", "Aksi"];
+  const headers = ["No", "Provinsi", "Kabupaten/Kota", "Aksi"];
   const tableBodies = [`provinsi.nama`, `nama`];
 
   const handleEdit = (item) => {

@@ -12,7 +12,7 @@ const useDistrik = create(
   devtools((set, get) => ({
     dtDistrik: [],
     responses: [],
-    setDistrik: async (search = "", page = "", limit = "") => {
+    setDistrik: async (cari = { search: "", kabupaten_id: "" }, page = "", limit = "") => {
       try {
         const response = await crud({
           method: "get",
@@ -20,7 +20,8 @@ const useDistrik = create(
           // headers: { Authorization: `Bearer ${getToken}` },
           params: {
             limit,
-            search,
+            search: cari.search,
+            kabupaten_id: cari.kabupaten_id,
             page,
           },
         });

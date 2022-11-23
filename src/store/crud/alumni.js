@@ -9,15 +9,15 @@ const { crud } = useUrl();
 
 // const getToken = JSON.parse(localStorage.getItem("token"));
 
-const useBarang = create(
+const useAlumni = create(
   devtools((set, get) => ({
-    dtBarang: [],
+    dtAlumni: [],
     responses: [],
-    setBarang: async (search = "", page = "", limit = "") => {
+    setAlumni: async (search = "", page = "", limit = "") => {
       try {
         const response = await crud({
           method: "get",
-          url: `/barang`,
+          url: `/alumni`,
           // headers: { Authorization: `Bearer ${getToken}` },
           params: {
             limit,
@@ -26,7 +26,7 @@ const useBarang = create(
           },
         });
         set((state) => ({ ...state, responses: response.data }));
-        set((state) => ({ ...state, dtBarang: response.data.data }));
+        set((state) => ({ ...state, dtAlumni: response.data.data }));
         return {
           status: "berhasil",
           data: response.data,
@@ -40,30 +40,41 @@ const useBarang = create(
     },
     addData: async (items) => {
       const formData = new FormData();
+      formData.append("distrik_id", items.distrik_id);
+      formData.append("prodi_id", items.prodi_id);
       formData.append("nama", items.nama);
-      formData.append("harga", items.harga);
-      formData.append("satuan", items.satuan);
-      formData.append("stok", items.stok);
-      formData.append("gambar", items.gambar);
+      formData.append("tempat", items.tempat);
+      formData.append("tgl_lahir", items.tgl_lahir);
+      formData.append("no_hp", items.no_hp);
+      formData.append("email", items.email);
+      formData.append("jenkel", items.jenkel);
+      formData.append("alamat", items.alamat);
+      formData.append("thn_masuk", items.thn_masuk);
+      formData.append("thn_lulus", items.thn_lulus);
+      formData.append("status_nikah", items.status_nikah);
+      formData.append("status_kerja", items.status_kerja);
+      formData.append("nm_instansi", items.nm_instansi);
+      formData.append("jabatan", items.jabatan);
+      formData.append("foto", items.foto);
       // const getToken = JSON.parse(localStorage.getItem("token"));
       try {
         const res = await crud({
           method: "post",
-          url: `/barang`,
+          url: `/alumni`,
           // headers: { Authorization: `Bearer ${getToken}` },
           data: formData,
         });
         set((state) => ({
-          dtBarang: [res.data.data, ...state.dtBarang],
+          dtAlumni: [res.data.data, ...state.dtAlumni],
         }));
-        console.log(res);
         return {
           status: "berhasil",
           data: res.data,
         };
       } catch (error) {
         return {
-          status: `Error ${error}`,
+          data: error.response.data,
+          status: `error`,
         };
       }
     },
@@ -71,11 +82,11 @@ const useBarang = create(
       try {
         const res = await crud({
           method: "delete",
-          url: `/barang/${id}`,
+          url: `/alumni/${id}`,
           // headers: { Authorization: `Bearer ${getToken}` },
         });
         set((state) => ({
-          dtBarang: state.dtBarang.filter((item) => item.id !== id),
+          dtAlumni: state.dtAlumni.filter((item) => item.id !== id),
         }));
         return {
           status: "berhasil",
@@ -90,16 +101,27 @@ const useBarang = create(
     },
     updateData: async (id, items) => {
       const formData = new FormData();
+      formData.append("distrik_id", items.distrik_id);
+      formData.append("prodi_id", items.prodi_id);
       formData.append("nama", items.nama);
-      formData.append("harga", items.harga);
-      formData.append("satuan", items.satuan);
-      formData.append("stok", items.stok);
-      formData.append("gambar", items.gambar);
+      formData.append("tempat", items.tempat);
+      formData.append("tgl_lahir", items.tgl_lahir);
+      formData.append("no_hp", items.no_hp);
+      formData.append("email", items.email);
+      formData.append("jenkel", items.jenkel);
+      formData.append("alamat", items.alamat);
+      formData.append("thn_masuk", items.thn_masuk);
+      formData.append("thn_lulus", items.thn_lulus);
+      formData.append("status_nikah", items.status_nikah);
+      formData.append("status_kerja", items.status_kerja);
+      formData.append("nm_instansi", items.nm_instansi);
+      formData.append("jabatan", items.jabatan);
+      formData.append("foto", items.foto);
       // const getToken = JSON.parse(localStorage.getItem("token"));
       try {
         const response = await crud({
           method: "post",
-          url: `/barang/${id}`,
+          url: `/alumni/${id}`,
           // headers: { Authorization: `Bearer ${getToken}` },
           data: formData,
           params: {
@@ -107,7 +129,7 @@ const useBarang = create(
           },
         });
         set((state) => ({
-          dtBarang: state.dtBarang.map((item) => {
+          dtAlumni: state.dtAlumni.map((item) => {
             if (item.id === id) {
               return {
                 ...item,
@@ -132,4 +154,4 @@ const useBarang = create(
   }))
 );
 
-export default useBarang;
+export default useAlumni;

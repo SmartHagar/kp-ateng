@@ -17,6 +17,9 @@ module.exports = {
         CantataOne: ["CantataOne"],
         ComicNeue: ["ComicNeue"],
       },
+      backgroundImage: {
+        "bg-1": "url('/src/assets/gambar/bg-1.png')",
+      },
     },
   },
   plugins: [],
