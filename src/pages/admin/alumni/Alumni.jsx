@@ -23,6 +23,8 @@ const Alumni = () => {
   const [search, setSearch] = useState("");
   const [dataEdit, setDataEdit] = useState({});
   const [cekEdit, setCekEdit] = useState(true);
+  const [openDet, setOpenDet] = useState(false);
+  const [row, setRow] = useState(null);
   // useEffect
   useEffect(() => {
     setAlumni(search, page, limit);
@@ -76,6 +78,8 @@ const Alumni = () => {
   // lihat detail
   const setLihat = (row) => {
     console.log("lihat", row);
+    setOpenDet(true);
+    setRow(row);
   };
 
   // show toast
@@ -91,7 +95,7 @@ const Alumni = () => {
   return (
     <>
       {/* detail */}
-      {/* <Details /> */}
+      <Details openDet={openDet} setOpenDet={setOpenDet} row={row} />
       {/* toaster */}
       <Toaster />
       {/* form */}

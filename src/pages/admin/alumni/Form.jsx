@@ -45,8 +45,8 @@ const Form = ({
   // reset
   const reset = () => {
     setNama("");
-    setTahunMasuk(2018);
-    setTahunLulus(2022);
+    setTahunMasuk("");
+    setTahunLulus("");
     setPilihProvinsi("");
     setPilihKabupaten("");
     setPilihDistrik("");
@@ -191,11 +191,11 @@ const Form = ({
                   <div className="mb-3 col-span-6 md:col-span-3 pt-0 flex flex-col gap-2">
                     <label htmlFor="prodi_id">Tahun Masuk</label>
                     <select
+                      value={tahunMasuk}
                       onChange={(e) => setTahunMasuk(e.target.value)}
-                      defaultValue={tahunMasuk}
                       className="w-full px-2 py-2 bg-white rounded text-sm border shadow outline-none focus:outline-none focus:ring"
                     >
-                      {thnMasuk(tahunMasuk)}
+                      {thnMasuk(2018)}
                     </select>
                   </div>
                   {/* thn lulus */}
@@ -203,10 +203,10 @@ const Form = ({
                     <label htmlFor="prodi_id">Tahun Lulus</label>
                     <select
                       onChange={(e) => setTahunLulus(e.target.value)}
-                      defaultValue={tahunLulus}
+                      value={tahunLulus}
                       className="w-full px-2 py-2 bg-white rounded text-sm border shadow outline-none focus:outline-none focus:ring"
                     >
-                      {thnMasuk(tahunLulus)}
+                      {thnMasuk(2022)}
                     </select>
                   </div>
                   {/* nama */}
