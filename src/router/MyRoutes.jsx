@@ -21,6 +21,11 @@ import NotFound from "../pages/errors/NotFound";
 // auth pages
 
 // user pages
+import IndexUser from "../pages/users/IndexUser";
+import DashboardUser from "../pages/users/dashboard/Dashboard";
+import AlumniUser from "../pages/users/alumni/Alumni";
+import AboutUser from "../pages/users/about/About";
+// ketua
 
 const MyRoutes = () => {
   const navigate = useNavigate();
@@ -30,9 +35,13 @@ const MyRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={pathname}>
-        <Route path="/" element={<Navigate replace to="/admin/dashboard" />} />
+        <Route path="/" element={<Navigate replace to="/user/dashboard" />} />
         {/* user pages */}
-        <Route path="user"></Route>
+        <Route path="user" element={<IndexUser />}>
+          <Route path="dashboard" element={<DashboardUser />} />
+          <Route path="about" element={<AboutUser />} />
+          <Route path="alumni/:id" element={<AlumniUser />} />
+        </Route>
         {/* auth pages */}
         <Route path="auth"></Route>
         {/* admin pages */}
