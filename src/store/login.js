@@ -4,7 +4,7 @@ import create from "zustand";
 import { devtools } from "zustand/middleware";
 import useUrl from "../services/base_url";
 
-const { auth, crud } = useUrl();
+const { auth } = useUrl();
 
 const user_login = JSON.parse(localStorage.getItem("user_login"));
 let getToken;
@@ -25,16 +25,6 @@ const useLogin = create(
           token: response.data.access_token,
         };
         localStorage.setItem("user_login", JSON.stringify(user));
-
-        // cek data pembeli
-        const cekDtPembeli = await crud.get(`/pembeli/${user.user_id}`);
-        if (cekDtPembeli.data) {
-          localStorage.setItem(
-            "dt_pembeli",
-            JSON.stringify(cekDtPembeli.data.data)
-          );
-        }
-
         return {
           status: "berhasil",
           data: response.data,
@@ -54,7 +44,6 @@ const useLogin = create(
           headers: { Authorization: `Bearer ${getToken}` },
         });
         localStorage.removeItem("user_login");
-        localStorage.removeItem("dt_pembeli");
         return {
           status: "berhasil",
           data: res.data,

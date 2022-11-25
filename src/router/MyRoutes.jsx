@@ -16,16 +16,26 @@ import Distrik from "../pages/admin/distrik/Distrik";
 import IndexAdmin from "../pages/admin/IndexAdmin";
 import Kabupaten from "../pages/admin/kabupaten/Kabupaten";
 import Provinsi from "../pages/admin/provinsi/Provinsi";
-import NotFound from "../pages/errors/NotFound";
 
 // auth pages
+import CekLogin from "../pages/auth/CekLogin";
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
 
 // user pages
 import IndexUser from "../pages/users/IndexUser";
 import DashboardUser from "../pages/users/dashboard/Dashboard";
 import AlumniUser from "../pages/users/alumni/Alumni";
 import AboutUser from "../pages/users/about/About";
-// ketua
+
+// ketua pages
+import IndexKetua from "../pages/ketua/IndexKetua";
+import DashboardKetua from "../pages/ketua/dashboard/Dashboard";
+
+// error
+import NotFound from "../pages/errors/NotFound";
+import Keseluruhan from "../pages/ketua/laporan/Keseluruhan";
+import PerDistrik from "../pages/ketua/laporan/PerDistrik";
 
 const MyRoutes = () => {
   const navigate = useNavigate();
@@ -35,7 +45,7 @@ const MyRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={pathname}>
-        <Route path="/" element={<Navigate replace to="/user/dashboard" />} />
+        <Route path="/" element={<Navigate replace to="/auth/login" />} />
         {/* user pages */}
         <Route path="user" element={<IndexUser />}>
           <Route path="dashboard" element={<DashboardUser />} />
@@ -43,7 +53,11 @@ const MyRoutes = () => {
           <Route path="alumni/:id" element={<AlumniUser />} />
         </Route>
         {/* auth pages */}
-        <Route path="auth"></Route>
+        <Route path="auth">
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="cek-login" element={<CekLogin />} />
+        </Route>
         {/* admin pages */}
         <Route path="admin" element={<IndexAdmin />}>
           <Route path="dashboard" element={<DashboardAdmin />} />
@@ -53,6 +67,14 @@ const MyRoutes = () => {
             <Route path="distrik" element={<Distrik />} />
           </Route>
           <Route path="alumni" element={<Alumni />} />
+        </Route>
+        {/* ketua pages */}
+        <Route path="ketua" element={<IndexKetua />}>
+          <Route path="dashboard" element={<DashboardKetua />} />
+          <Route path="laporan">
+            <Route path="keseluruhan" element={<Keseluruhan />} />
+            <Route path="perdistrik" element={<PerDistrik />} />
+          </Route>
         </Route>
 
         {/* not found */}

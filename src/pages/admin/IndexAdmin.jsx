@@ -1,11 +1,24 @@
 /** @format */
 
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "../../components/admin/navbar/Navbar";
 import Sidebar from "../../components/admin/sidebar/Sidebar";
 
 const IndexAdmin = () => {
+  // navigate
+  const navigate = useNavigate();
+  useEffect(() => {
+    const user_login = JSON.parse(localStorage.getItem("user_login"));
+    if (user_login) {
+      const { role } = user_login;
+      if (role === "ketua") {
+        navigate("/ketua/dashboard");
+      }
+    } else {
+      navigate("/user/dashboard");
+    }
+  }, []);
   return (
     <div className="flex font-ComicNeue text-black">
       {/* sidebar */}
