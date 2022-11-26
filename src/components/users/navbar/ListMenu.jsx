@@ -53,7 +53,7 @@ const ListMenu = () => {
 
   return (
     <div className="flex flex-col md:flex-row md:mx-6">
-      <div className="relative flex gap-4">
+      <div className="relative flex gap-4 z-50">
         {links &&
           links.map((row, index) => (
             <div className="" key={index}>
@@ -79,8 +79,8 @@ const ListMenu = () => {
               {row.submenu && (
                 <div
                   className={`${
-                    heading === row.name ? "block" : "hidden"
-                  } absolute left-14 top-10 w-44 rounded-lg flex flex-wrap backdrop-blur-lg bg-white/70 z-50`}
+                    heading === row.name ? "absolute" : "hidden"
+                  } left-14 top-10 w-44 rounded-lg flex flex-wrap backdrop-blur-lg bg-white/70 z-50`}
                 >
                   {row.sublink.map((sub, isblk) => (
                     <NavLink

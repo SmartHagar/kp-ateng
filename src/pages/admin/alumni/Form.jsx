@@ -20,8 +20,8 @@ const Form = ({
   const { BASE_URL } = useUrl();
   // state
   const [nama, setNama] = useState("");
-  const [tahunMasuk, setTahunMasuk] = useState("");
-  const [tahunLulus, setTahunLulus] = useState("");
+  const [tahunMasuk, setTahunMasuk] = useState(2018);
+  const [tahunLulus, setTahunLulus] = useState(2022);
   const [pilihProvinsi, setPilihProvinsi] = useState("");
   const [pilihKabupaten, setPilihKabupaten] = useState("");
   const [pilihDistrik, setPilihDistrik] = useState("");
@@ -45,8 +45,8 @@ const Form = ({
   // reset
   const reset = () => {
     setNama("");
-    setTahunMasuk("");
-    setTahunLulus("");
+    setTahunMasuk(2018);
+    setTahunLulus(2022);
     setPilihProvinsi("");
     setPilihKabupaten("");
     setPilihDistrik("");

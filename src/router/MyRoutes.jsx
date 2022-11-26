@@ -45,7 +45,7 @@ const MyRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={pathname}>
-        <Route path="/" element={<Navigate replace to="/auth/login" />} />
+        <Route path="/" element={<Navigate replace to="/user/dashboard" />} />
         {/* user pages */}
         <Route path="user" element={<IndexUser />}>
           <Route path="dashboard" element={<DashboardUser />} />
