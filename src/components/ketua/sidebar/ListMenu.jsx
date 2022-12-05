@@ -79,15 +79,6 @@ export const ListMenu = () => {
           </NavLink>
         </nav>
       </details>
-
-      <NavLink
-        to="/ketua/alumni"
-        className="flex items-center rounded-lg px-4 py-2 text-black hover:bg-hijau hover:text-black"
-      >
-        <BiUserCheck size={20} />
-
-        <span className="ml-3 text-sm"> Alumni </span>
-      </NavLink>
     </nav>
   );
 };

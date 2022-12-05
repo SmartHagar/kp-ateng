@@ -5,7 +5,7 @@ import { devtools } from "zustand/middleware";
 import useUrl from "../../services/base_url";
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
-const { api } = useUrl();
+const { api, exports } = useUrl();
 
 // const getToken = JSON.parse(localStorage.getItem("token"));
 
@@ -45,6 +45,27 @@ const useAlumniAPI = create(
         const res = await api({
           method: "get",
           url: `/alumni/chart`,
+        });
+        set((state) => ({ ...state, dtAlumni: res.data }));
+        return {
+          status: "berhasil",
+          data: res.data,
+        };
+      } catch (error) {
+        return {
+          status: "error",
+          error: error.response.data,
+        };
+      }
+    },
+    setLapAlumni: async ({ distrik_id = "" }) => {
+      try {
+        const res = await exports({
+          method: "get",
+          url: `/lap-alumni`,
+          params: {
+            distrik_id,
+          },
         });
         set((state) => ({ ...state, dtAlumni: res.data }));
         return {
