@@ -38,20 +38,20 @@ const Login = () => {
     }
   }, []);
   return (
-    <div className="h-screen flex items-center bg-bg-2 bg-cover bg-center">
+    <div className="h-screen flex items-center bg-bg-3 bg-cover bg-center">
       <Toaster />
       <div className="flex w-full max-w-sm mx-auto overflow-hidden rounded-lg shadow-lg bg-gray-800/10 backdrop-blur-md lg:max-w-lg">
         <div className="w-full px-6 py-8 md:px-8">
-          <h2 className="text-2xl font-semibold text-center text-white">
+          <h2 className="text-2xl font-semibold text-center text-gray-700">
             Fakultas Ekonomi
           </h2>
 
-          <p className="text-xl text-center text-gray-200">Website Alumni</p>
+          <p className="text-xl text-center text-gray-700">Website Alumni</p>
 
           <form onSubmit={handleLogin}>
             <div className="mt-4">
               <label
-                className="block mb-2 text-sm font-medium text-gray-200"
+                className="block mb-2 text-sm font-medium text-gray-700"
                 htmlFor="LoggingEmailAddress"
               >
                 Alamat Email
@@ -68,7 +68,7 @@ const Login = () => {
             <div className="mt-4">
               <div className="flex justify-between">
                 <label
-                  className="block mb-2 text-sm font-medium text-gray-200"
+                  className="block mb-2 text-sm font-medium text-gray-700"
                   htmlFor="loggingPassword"
                 >
                   Password

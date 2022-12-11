@@ -20,6 +20,7 @@ module.exports = {
       backgroundImage: {
         "bg-1": "url('/src/assets/gambar/bg-1.png')",
         "bg-2": "url('/src/assets/gambar/bg-2.jpg')",
+        "bg-3": "url('/src/assets/gambar/bg-3.jpeg')",
       },
     },
   },
